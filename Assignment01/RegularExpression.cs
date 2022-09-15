@@ -41,17 +41,25 @@ public class RegularExpression {
         }
     }
 
-    //IEnumerable<(Uri url, string title)> Urls(string html){
-        //var tmpLines = html.Split(new [] { "<a" }, StringSplitOptions.None);
-        //var pattern = "href\\s*=\\s*\"(?<url>.*?)\"";
-        //var pattern = "?"; //TODO add a pattern!!!!
-        //foreach (var line in tmpLines){
-        //   var tmp = Regex.Match(input, regex);
-         //   foreach (Match match in tmp){
-            //    yield (match.url, ,match.title);
-        //   }
-        //}
-    //}
+    public static IEnumerable<(Uri url, string title)> Urls(string html){
+        string pattern = @"<a href=""(?<link>.*?)""( title=""(?<title>.*?))?""?>(?<innertext>.*?)<\/a>";
+        var matches = Regex.Matches(html, pattern);
+
+        foreach(Match match in matches){
+            var link = match.Groups["link"].Value;
+            var title = match.Groups["title"].Value;
+            var innertext = match.Groups["innertext"].Value;
+
+            var urilink = new Uri(link);
+            
+            if (title.Equals("")){
+                yield return (urilink, innertext);
+            } else {
+                yield return (urilink, title);
+            }
+
+        }
+    }
     
 }
 }

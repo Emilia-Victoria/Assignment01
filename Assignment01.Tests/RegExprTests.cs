@@ -102,21 +102,23 @@ public class UnitTest1
         output.Should().NotBeEquivalentTo(expected);
     }
 
-    /*[Fact]
-    public void testNow(){
-        string expected = "test";
-        string output = "Test now";
-        output.Should().BeEquivalentTo(expected);
-    }*/
-
-    //[Fact]
-    //public void Urls_something(){
+    [Fact]
+    public void Urls_With_Example_Text(){
         //Arrange
+        string input = @"<div>
+                            <p>A <b>regular expression</b>, <b>regex</b> or <b>regexp</b> (sometimes called a <b>rational expression</b>) is, in <a href=""https://en.wikipedia.org/wiki/Theoretical_computer_science"" title=""Theoretical computer science"">theoretical computer science</a> and <a href=""https://en.wikipedia.org/wiki/Formal_language"">formal language</a> </p>
+                        </div>";
 
+        List<(Uri, string)> expected = new List<(Uri, string)>();
+        expected.Add((new Uri("https://en.wikipedia.org/wiki/Theoretical_computer_science"),"Theoretical computer science"));
+        expected.Add((new Uri("https://en.wikipedia.org/wiki/Formal_language"), "formal language"));
+        
+        
         //Act
-        //var a = RegularExpression.Urls();
-
+        IEnumerable<(Uri, string)> output = RegularExpression.Urls(input);
+        
         //Assert
-    //}
+        output.Should().BeEquivalentTo(expected);
+    }
 
 }
