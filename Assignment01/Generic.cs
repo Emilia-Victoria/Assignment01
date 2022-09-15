@@ -5,7 +5,7 @@
         public static int GreaterCount<T, U> (IEnumerable<T> items, T x) where T : IComparable<T>{
             int result = 0;
             
-           foreach (IComparable item in items){
+           foreach (IComparable<T> item in items){
             if (item.CompareTo(x) == 1){
                 result++;
             }
@@ -20,7 +20,7 @@
 
             int result = 0;
             
-           foreach (IComparable item in items){
+           foreach (IComparable<U> item in items){
             if (item.CompareTo(x) == 1){
                 result++;
             }

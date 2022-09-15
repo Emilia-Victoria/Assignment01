@@ -13,13 +13,13 @@ public class MyPersonWithAge : IComparable<MyPersonWithAge>{
         set {age = value;}
     }
 
-    public int CompareTo(MyPersonWithAge person2){
+    public int CompareTo(MyPersonWithAge? person2){
 
-        if (this.Age > person2.Age){
+        if (this.Age > person2?.Age){
             return 1;
 
         }
-        if (this.Age < person2.Age){
+        if (this.Age < person2?.Age){
             return -1;
 
         }

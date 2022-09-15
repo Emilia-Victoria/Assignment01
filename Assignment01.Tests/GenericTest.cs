@@ -15,10 +15,12 @@ public class GenericTest
         result.Equals(2);
     }
 
+    [Fact]
     public void Return_2_Given_PersonWithAge_0_1_2_3_4_7_max_3()
     {
         // Arrange
         MyPersonWithAgeAndName[] items2 = new MyPersonWithAgeAndName[] {new MyPersonWithAgeAndName(0,"Steve"),new MyPersonWithAgeAndName(1,"Steven"),new MyPersonWithAgeAndName(2,"Steels"),new MyPersonWithAgeAndName(3,"Stacy"),new MyPersonWithAgeAndName(4,"Bill"),new MyPersonWithAgeAndName(7,"Laura")};
+
 
         // Act
         int result2 = Generic.GreaterCount2<MyPersonWithAgeAndName,MyPersonWithAge>(items2, new MyPersonWithAgeAndName(3,"Isa"));
