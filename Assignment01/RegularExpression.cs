@@ -27,7 +27,7 @@ public class RegularExpression {
     }
 
     public static IEnumerable<string> InnerText(string html, string tag){
-        string pattern = $@"<({tag})>(?<innerText>.*?)</\1>";
+        string pattern = $@"<({tag}).*?>(?<innerText>.*?)</\1>";
         var matches = Regex.Matches(html, pattern);
 
         foreach(Match match in matches){
