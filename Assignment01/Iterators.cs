@@ -1,13 +1,7 @@
 namespace iterators;
 
-public class Iterators{
-
-    public Iterators(){
-
-    }
-
-
-    public IEnumerable<T> Flatten<T>(IEnumerable<IEnumerable<T>> items)
+public static class Iterators{
+    public static IEnumerable<T> Flatten<T>(IEnumerable<IEnumerable<T>> items)
     {
         foreach (var item in items){
             foreach(var innerItem in item){
@@ -16,7 +10,7 @@ public class Iterators{
         }
     }
 
-    public IEnumerable<T> Filter<T>(IEnumerable<T> items, Predicate<T> predicate)
+    public static IEnumerable<T> Filter<T>(IEnumerable<T> items, Predicate<T> predicate)
     {
         foreach (var item in items){
             if (predicate(item)){
