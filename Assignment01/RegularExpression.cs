@@ -26,9 +26,20 @@ public class RegularExpression {
         }
     }
 
-    //IEnumerable<string> InnerText(string html, string tag){
+    public static IEnumerable<string> InnerText(string html, string tag){
+        string pattern = $@"<({tag})>(?<innerText>.*?)</\1>";
+        var matches = Regex.Matches(html, pattern);
 
-    //}
+        foreach(Match match in matches){
+            var value = match.Groups["innerText"].Value;
+            Regex replaceTags = new Regex(@"<[^>]*>");
+
+            string innerText = replaceTags.Replace(value, "");
+            
+            yield return innerText;
+
+        }
+    }
 
     //IEnumerable<(Uri url, string title)> Urls(string html){
         //var tmpLines = html.Split(new [] { "<a" }, StringSplitOptions.None);
